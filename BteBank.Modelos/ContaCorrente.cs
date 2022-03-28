@@ -40,11 +40,12 @@ namespace ByteBank.Modelos
                 _saldo = value;
             }
         }
+
         /// <summary>
-        /// Cria uma instancia de Conta Corrente com os argumentos utilizados
+        /// Cria uma instancia de Conta Corrente com os argumentos utilizados.
         /// </summary>
-        /// <param name="agencia">Representa o valor da propriedade <see cref="Agencia"/> e deve possuir um valor maior que  zero. </param>
-        /// <param name="numero">Representa o valor da propriedade <see cref="Numero"/> e deve possuir um valor maior que  zero.</param>
+        /// <param name="agencia"> Representa o valor da propriedade <see cref="Agencia"/> e deve possuir um valor maior que  zero. </param>
+        /// <param name="numero"> Representa o valor da propriedade <see cref="Numero"/> e deve possuir um valor maior que  zero.</param>
         public ContaCorrente(int agencia, int numero)
         {
             if (numero <= 0)
@@ -64,6 +65,12 @@ namespace ByteBank.Modelos
             TaxaOperacao = 30 / TotalDeContasCriadas;
         }
 
+        /// <summary>
+        /// Realiza o saque e atualiza o valor da propriedade <see cref="Saldo"/>
+        /// </summary>
+        /// <param name="valor">Representa o valor do Saque, deve ser maior que zero e menor que <see cref="Saldo"/></param>
+        /// <exception cref="ArgumentException">Excecao lancada quando um valor negativo eh utilizado no argumento <paramref name="valor"/></exception>
+        /// <exception cref="SaldoInsuficienteException"> Excecao lancada quando o valor de <paramref name="valor"/> eh maior que o valor da propriedade <see cref="Saldo"/></exception>
         public void Sacar(double valor)
         {
             if (valor < 0)
